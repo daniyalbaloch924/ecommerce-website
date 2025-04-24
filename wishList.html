@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/8866/8866156.png" type="image/x-icon">
+    <title>Wishlist</title>
+
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="wishList.html">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+    <header class="sticky top-0 z-50  bg-[#7AE2CF] shadow-lg transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <!-- Logo -->
+
+            <a href="ecommerce.html">
+                <div class="flex gap-2 tracking-wide hover:scale-105 transform transition duration-300 cursor-pointer">
+
+                    <img src="https://cdn-icons-png.flaticon.com/512/8866/8866156.png" alt="" class="h-10 w-10">
+                    <h1 class="text-white text-3xl font-bold">
+                        E-commerce
+                    </h1>
+                </div>
+            </a>
+
+            <!-- Navigation -->
+            <nav class="hidden md:flex space-x-8 text-white font-semibold text-lg pr-16">
+                <a href="ecommerce.html" class="relative group">
+                    <span class="group-hover:text-[#0D3B66] transition duration-300">Home</span>
+                    <span
+                        class="absolute left-0 -bottom-1 w-0 h-1 bg-[#0D3B66] group-hover:w-full transition-all duration-300 ease-in-out rounded"></span>
+                </a>
+                <a href="#" class="relative group">
+                    <span class="group-hover:text-[#0D3B66] transition duration-300">Contact</span>
+                    <span
+                        class="absolute left-0 -bottom-1 w-0 h-1 bg-[#0D3B66] group-hover:w-full transition-all duration-300 ease-in-out rounded"></span>
+                </a>
+                <a href="aboutUs.html" class="relative group">
+                    <span class="group-hover:text-[#0D3B66] transition duration-300">About</span>
+                    <span
+                        class="absolute left-0 -bottom-1 w-0 h-1 bg-[#0D3B66] group-hover:w-full transition-all duration-300 ease-in-out rounded"></span>
+                </a>
+            </nav>
+
+            <!-- Icons -->
+            <div class="flex items-center space-x-6 text-white text-2xl">
+                <a href="#"
+                    class="hover:text-yellow-300 tracking-wide hover:scale-105 transform transition duration-300">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                </a>
+                <a href="addToCart.html"
+                    class="hover:text-yellow-300 tracking-wide hover:scale-105 transform transition duration-300">
+                    <svg class="h-7 w-7" fill="currentColor" viewBox="0 0 576 512">
+                        <path
+                            d="M551.991 64H144.28l-8.726-44.608C133.35 8.128 123.478 0 112 0H12C5.373 0 0 5.373 0 12v24c0 6.627 5.373 12 12 12h80.24l69.594 355.701C150.796 415.201 144 430.802 144 448c0 35.346 28.654 64 64 64s64-28.654 64-64a63.681 63.681 0 0 0-8.583-32h145.167a63.681 63.681 0 0 0-8.583 32c0 35.346 28.654 64 64 64 35.346 0 64-28.654 64-64 0-18.136-7.556-34.496-19.676-46.142l1.035-4.757c3.254-14.96-8.142-29.101-23.452-29.101H203.76l-9.39-48h312.405c11.29 0 21.054-7.869 23.452-18.902l45.216-208C578.695 78.139 567.299 64 551.991 64zM208 472c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm256 0c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm23.438-200H184.98l-31.31-160h368.548l-34.78 160z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div id="cardContainer" class="h-[100vh]">
+
+
+    </div>
+
+    <footer class="bg-[#101828] w-full h-20">
+
+        <div class="text-center py-7 text-white font-medium">
+            <p>© E-Commerce. Thank you for visiting! All rights reserved.</p>
+        </div>
+
+    </footer>
+
+
+    <script>
+
+        let wishList = JSON.parse(localStorage.getItem("wishlist"));
+
+        const container = document.getElementById("cardContainer");
+        container.classList = "flex justify-evenly flex-wrap p-12 h-auto";
+
+        function wishListData() {
+            let wishList = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+            container.innerHTML = ""; 
+
+            wishList.forEach((item, id) => {
+                const card = document.createElement("div");
+                card.classList = "w-[30%] mt-6 ";
+
+                const cardContent = `
+                    <div class="bg-white border border-gray-300 rounded-2xl shadow-2xl overflow-hidden p-4 flex flex-col h-full">
+                        <img src="${item.image}" alt="${item.title}" class="w-full h-48 object-contain mb-4">
+                        <h3 class="text-xl font-bold text-[#06202B] mb-2">${item.title}</h3>
+                        <p class="text-lg font-semibold text-[#06202B] mb-1">${item.price}</p>
+                        <p class="text-gray-600 flex-grow">${item.description}</p>
+                        <div class="mt-4 flex  gap-2">
+                            <button class="bg-[#F94144] text-white px-4 py-2 rounded-lg w-full font-medium transition-all" onclick="removeItem(${id})">Remove From Wishlist</button>
+                        </div>
+                    </div>
+                `;
+
+                card.innerHTML = cardContent;
+                container.appendChild(card);
+            });
+        }
+
+        function removeItem(index) {
+            let wishList = JSON.parse(localStorage.getItem("wishlist")) || [];
+            wishList.splice(index, 1);
+            localStorage.setItem("wishlist", JSON.stringify(wishList));
+            wishListData();
+        }
+
+        wishListData();
+    </script>
+
+
+</body>
+
+</html>
