@@ -11,9 +11,30 @@
     <link rel="stylesheet" href="aboutUs.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+    <style>
+        #video-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        min-width: 100%;
+        min-height: 100%;
+        object-fit: cover;
+        z-index: -1;
+        }
+      
+        .content-wrapper {
+        position: relative;
+        z-index: 1;
+        }
+        </style>
+
 </head>
 
 <body>
+
+    <video id="video-background" autoplay loop muted src="/mountain video.mp4">
+
+    </video>
 
     <!-- Fancy Navbar with Gradient and Animations -->
     <header class="sticky top-0 z-50  bg-[#7AE2CF] shadow-lg transition-all duration-500">
@@ -52,11 +73,11 @@
             <!-- Icons -->
             <div class="flex items-center space-x-6 text-white text-2xl">
                 <a href="wishList.html"
-                    class="hover:text-yellow-300 tracking-wide hover:scale-105 transform transition duration-300">
+                    class="hover:text-[#0D3B66] tracking-wide hover:scale-105 transform transition duration-300">
                     <i class="fa-solid fa-bag-shopping"></i>
                 </a>
                 <a href="addToCart.html"
-                    class="hover:text-yellow-300 tracking-wide hover:scale-105 transform transition duration-300">
+                    class="hover:text-[#0D3B66] tracking-wide hover:scale-105 transform transition duration-300">
                     <svg class="h-7 w-7" fill="currentColor" viewBox="0 0 576 512">
                         <path
                             d="M551.991 64H144.28l-8.726-44.608C133.35 8.128 123.478 0 112 0H12C5.373 0 0 5.373 0 12v24c0 6.627 5.373 12 12 12h80.24l69.594 355.701C150.796 415.201 144 430.802 144 448c0 35.346 28.654 64 64 64s64-28.654 64-64a63.681 63.681 0 0 0-8.583-32h145.167a63.681 63.681 0 0 0-8.583 32c0 35.346 28.654 64 64 64 35.346 0 64-28.654 64-64 0-18.136-7.556-34.496-19.676-46.142l1.035-4.757c3.254-14.96-8.142-29.101-23.452-29.101H203.76l-9.39-48h312.405c11.29 0 21.054-7.869 23.452-18.902l45.216-208C578.695 78.139 567.299 64 551.991 64zM208 472c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm256 0c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm23.438-200H184.98l-31.31-160h368.548l-34.78 160z" />
@@ -69,7 +90,7 @@
     <div class="py-12">
         <h1 class="text-4xl font-bold flex-col text-center justify-center">About <span
                 class="text-[#7AE2CF]">E-commerce</span></h1>
-        <p class="text-center py-6 text-lg">Welcome to E-Commerce, your number one destination for high-quality
+        <p class="text-center text-white py-6 text-lg">Welcome to E-Commerce, your number one destination for high-quality
             products. We’re dedicated to giving you the best shopping experience,<br> focusing on reliability, customer
             service, and uniqueness.</p>
     </div>
@@ -78,7 +99,7 @@
 
         <div class="h-32 w-[38%] border rounded-lg shadow-xl p-1">
             <h1 class="text-2xl font-medium text-[#7AE2CF] pl-2">Our Mission</h1>
-            <p class="px-2 mt-1 text-sm">Our mission is to provide top-quality products at competitive prices while
+            <p class="px-2 mt-1 text-sm text-white">Our mission is to provide top-quality products at competitive prices while
                 ensuring the best customer
                 experience. We strive to be your most trusted online shopping destination.</p>
 
@@ -87,7 +108,7 @@
 
         <div class="h-32 w-[38%] border rounded-lg shadow-xl p-1">
             <h1 class="text-2xl font-medium text-[#7AE2CF] pl-2">Our Vision</h1>
-            <p class="px-2 mt-1 text-sm">We aim to revolutionize online shopping by making it effortless, affordable,
+            <p class="px-2 mt-1 text-sm text-white">We aim to revolutionize online shopping by making it effortless, affordable,
                 and enjoyable. Our goal is
                 to bring the best products from around the world right to your doorstep.</p>
 
@@ -104,21 +125,21 @@
 
         <div class="h-28 w-[25%] border rounded-lg shadow-xl p-2">
             <h1 class="text-lg font-medium text-[#7AE2CF] pl-2 text-center">High-Quality Products</h1>
-            <p class="px-2 mt-1 text-sm text-center">We offer a carefully curated selection of premium products.</p>
+            <p class="px-2 mt-1 text-sm text-center text-white">We offer a carefully curated selection of premium products.</p>
 
 
         </div>
 
         <div class="h-28 w-[25%] border rounded-lg shadow-xl p-2">
             <h1 class="text-lg font-medium text-[#7AE2CF] pl-2 text-center">Fast & Secure Shipping</h1>
-            <p class="px-2 mt-1 text-sm">Get your orders delivered quickly and securely.</p>
+            <p class="px-2 mt-1 text-sm text-white">Get your orders delivered quickly and securely.</p>
 
 
         </div>
 
         <div class="h-28 w-[25%] border rounded-lg shadow-xl p-2">
             <h1 class="text-lg font-medium text-[#7AE2CF] pl-2 text-center">Excellent Customer Support</h1>
-            <p class="px-2 mt-1 text-sm">Our support team is available 24/7 to assist you.</p>
+            <p class="px-2 mt-1 text-sm text-white">Our support team is available 24/7 to assist you.</p>
 
 
         </div>
@@ -127,13 +148,16 @@
 
     <div class="py-2">
         <h1 class="text-2xl font-semibold flex-col text-center justify-center mt-8">Start Shopping Now !</h1>
-        <p class="text-center py-6">Explore our wide range of products and enjoy an amazing shopping experience.
+        <p class="text-center py-6 text-white">Explore our wide range of products and enjoy an amazing shopping experience.
         </p>
     </div>
 
-    <a href="ecommerce.html"><div class="flex justify-center">
-        <button class="bg-[#7AE2CF] text-white font-medium  px-4 py-2 rounded-lg w-40">Browse
-            Products</button></a>
+    <a href="ecommerce.html">
+        <div class="flex justify-center">
+            <button
+                class="h-10 w-full px-4 bg-[#7AE2CF] text-white font-bold hover:from-blue-400 hover:to-purple-400 rounded-md tracking-wide hover:scale-105 transform transition duration-350">Browse
+                Products</button>
+    </a>
     </div>
 
     <footer class="bg-[#101828] w-full h-20 mt-14">

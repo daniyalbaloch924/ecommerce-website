@@ -12,9 +12,31 @@
     <link rel="stylesheet" href="wishList.html">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+    <style>
+        #video-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        min-width: 100%;
+        min-height: 100%;
+        object-fit: cover;
+        z-index: -1;
+        }
+      
+        .content-wrapper {
+        position: relative;
+        z-index: 1;
+        }
+        </style>
+      
+
 </head>
 
 <body>
+
+    <video id="video-background" autoplay loop muted src="/mountain video.mp4">
+
+    </video>
 
     <header class="sticky top-0 z-50  bg-[#7AE2CF] shadow-lg transition-all duration-500">
         <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -37,7 +59,7 @@
                     <span
                         class="absolute left-0 -bottom-1 w-0 h-1 bg-[#0D3B66] group-hover:w-full transition-all duration-300 ease-in-out rounded"></span>
                 </a>
-                <a href="#" class="relative group">
+                <a href="contactUspage.html" class="relative group">
                     <span class="group-hover:text-[#0D3B66] transition duration-300">Contact</span>
                     <span
                         class="absolute left-0 -bottom-1 w-0 h-1 bg-[#0D3B66] group-hover:w-full transition-all duration-300 ease-in-out rounded"></span>
@@ -52,11 +74,11 @@
             <!-- Icons -->
             <div class="flex items-center space-x-6 text-white text-2xl">
                 <a href="#"
-                    class="hover:text-yellow-300 tracking-wide hover:scale-105 transform transition duration-300">
+                    class="hover:text-[#0D3B66] tracking-wide hover:scale-105 transform transition duration-300">
                     <i class="fa-solid fa-bag-shopping"></i>
                 </a>
                 <a href="addToCart.html"
-                    class="hover:text-yellow-300 tracking-wide hover:scale-105 transform transition duration-300">
+                    class="hover:text-[#0D3B66] tracking-wide hover:scale-105 transform transition duration-300">
                     <svg class="h-7 w-7" fill="currentColor" viewBox="0 0 576 512">
                         <path
                             d="M551.991 64H144.28l-8.726-44.608C133.35 8.128 123.478 0 112 0H12C5.373 0 0 5.373 0 12v24c0 6.627 5.373 12 12 12h80.24l69.594 355.701C150.796 415.201 144 430.802 144 448c0 35.346 28.654 64 64 64s64-28.654 64-64a63.681 63.681 0 0 0-8.583-32h145.167a63.681 63.681 0 0 0-8.583 32c0 35.346 28.654 64 64 64 35.346 0 64-28.654 64-64 0-18.136-7.556-34.496-19.676-46.142l1.035-4.757c3.254-14.96-8.142-29.101-23.452-29.101H203.76l-9.39-48h312.405c11.29 0 21.054-7.869 23.452-18.902l45.216-208C578.695 78.139 567.299 64 551.991 64zM208 472c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm256 0c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm23.438-200H184.98l-31.31-160h368.548l-34.78 160z" />
@@ -71,6 +93,16 @@
 
     </div>
 
+    <section id="emptyWishlist" class="hidden flex-col items-center gap-4 mt-16 h-[100vh]">
+
+        <h1 class="text-3xl font-bold">Your Wishlist</h1>
+        <div
+            class="bg-gray-200 h-20 w-[95%] font-bold rounded-md shadow-xl text-center flex justify-center items-center">
+            <p>Your Wishlist is empty.</p>
+        </div>
+
+    </section>
+
     <footer class="bg-[#101828] w-full h-20">
 
         <div class="text-center py-7 text-white font-medium">
@@ -83,16 +115,34 @@
     <script>
 
         let wishList = JSON.parse(localStorage.getItem("wishlist"));
+        const empty = document.getElementById("emptyWishlist")
 
+        
         const container = document.getElementById("cardContainer");
         container.classList = "flex justify-evenly flex-wrap p-12 h-auto";
+
+        if (!wishList || wishList.length === 0) {
+
+            container.style.display = "none";
+            empty.style.display = "flex";
+
+        }
+
+        else {
+            container.style.display = "cartContainer";
+            empty.style.display = "none";
+            wishListData();
+        }
+
 
         function wishListData() {
             let wishList = JSON.parse(localStorage.getItem("wishlist")) || [];
 
-            container.innerHTML = ""; 
+            container.innerHTML = "";
 
-            wishList.forEach((item, id) => {
+            if(wishList.length > 0){
+
+                wishList.forEach((item, id) => {
                 const card = document.createElement("div");
                 card.classList = "w-[30%] mt-6 ";
 
@@ -111,6 +161,17 @@
                 card.innerHTML = cardContent;
                 container.appendChild(card);
             });
+
+                
+            }
+
+            else{
+
+                container.style.display = "none";
+                empty.style.display = "flex";
+            }
+
+          
         }
 
         function removeItem(index) {
